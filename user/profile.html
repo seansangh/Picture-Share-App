@@ -1,0 +1,527 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Picture Share!</title>
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://cdn.hyperdev.com/us-east-1%3A60e6615e-7d9e-47ac-903b-3b4b47372e42%2Flogo.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="ejs.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script> 
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/client.js" defer></script>
+    <style>
+      .a2{background: #d9d9d9;}
+    </style>
+    <script>
+      $(document).ready(function(){
+          $('#ics').on('click', function(){
+          $('#rest').css('display', 'block');
+          $('#rest1').css('display', 'block');
+          $('#rest2').css('display', 'block');
+          $('#rest3').css('display', 'block');
+          $('#ics').css('display', 'none');
+          $('#ics2').css('display', 'inline');
+          $('#ics2').css('opacity', '1');
+        
+        })
+
+        $('#ics2').on('click', function(){
+          $('#rest').css('display', 'none');
+          $('#rest1').css('display', 'none');
+          $('#rest2').css('display', 'none');
+          $('#rest3').css('display', 'none');
+          $('#ics').css('display', 'inline');
+          $('#ics2').css('display', 'none');          
+        }) 
+        
+   function onResize(){    
+if ($(window).width() > 900) {
+          $('#ics').css('display', 'none');          
+          $('#ics2').css('display', 'none');          
+          $('#rest').css('display', 'inline');
+          $('#rest1').css('display', 'inline');
+          $('#rest2').css('display', 'inline');
+          $('#rest3').css('display', 'none');
+}
+else {
+  
+          $('#ics').css('display', 'inline');          
+          $('#ics2').css('display', 'none');          
+          $('#rest').css('display', 'none');
+          $('#rest1').css('display', 'none');
+          $('#rest2').css('display', 'none');
+          $('#rest3').css('display', 'none');
+}
+    } 
+        
+        $(window).resize(onResize);
+
+      
+      })
+    </script>
+        <script>
+$('.grid').masonry({
+  // options...
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});      
+    </script>
+    <script>
+      
+    function getMeta(url, event) { 
+     var img = new Image();
+     img.src = url;
+
+     var num= event.target.id.replace(/\D/g,'')
+    
+     img.onload= function(){
+      
+      if(img.width>img.height){
+       // $('#rest').css('display', 'block');
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num).css('width',w)        
+        $('#d'+num).css('width',w+10)  
+        $('#d'+num).css('height',img.height/factor+85)       
+        $('#i'+num).css('width',w)       
+        $('#f'+num).css('width',w)       
+        
+      }else{
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num).css('width', w)  
+        $('#d'+num).css('width',w+10)       
+        $('#d'+num).css('height',img.height/factor+85)
+        $('#i'+num).css('width',w)               
+        $('#f'+num).css('width',w)       
+ 
+      }
+     }
+      
+    }
+    </script>
+    <script>
+     $(document).ready(function(){ 
+       $('.grid').css('opacity', '0') 
+        
+     function display(){
+
+       // $('.grid').attr("data-masonry", '{ "itemSelector": ".grid-item", "columnWidth": 275 }')              
+   //   $('.grid-item#d0').css('height',50)
+var elem = document.querySelector('.grid');
+var msnry = new Masonry( elem, {
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 275
+});
+
+// element argument can be a selector string
+//   for an individual element
+var msnry = new Masonry( '.grid', {
+  // options
+});
+   $('.grid').css('opacity','1')
+   $('.spinner').css('display', 'none')
+       
+     }
+       
+       
+     setTimeout(function(){
+       display()
+       
+     setInterval(function(){
+       display()
+     },1000)      
+       
+     },2000)
+       
+     setTimeout(function(){
+       display()
+     },4000)       
+       
+     setTimeout(function(){
+       display()
+     },6000)
+       
+     setTimeout(function(){
+       display()
+     },8000)  
+       
+         
+       
+    })
+    </script>
+    <script>
+      $(document).ready(function(){ 
+        $('.bStar').on('click',function(e) {
+        var index=e.target.id;
+        var cl= index.replace("bStar","").replace("iStar","").replace("likes","");
+        var name=($('.bStar').attr('class')).replace('bStar ','');
+        var tN= "#timeNo"+cl;
+          
+        var time= ($(tN).attr('class')).replace('timeNo a','');
+          
+        var num= index.replace('bStar','likes');
+        
+        var mis= "#bStar"+cl; var mis2= "#likes"+cl;
+          
+        if($(mis).css('color')=='rgb(243, 199, 24)'){
+          $(mis).css('color','rgb(51, 51, 51)');
+          var a= $(mis2).html();
+          if(a=="99+" || a==0){
+            var b=a;
+          }
+          else{
+            var b= eval(a-1);
+          }
+          $(mis2).html(b);
+        }
+        else if($(mis).css('color')=='rgb(51, 51, 51)'){
+          $(mis).css('color','rgb(243, 199, 24)');
+          var a= $(mis2).html();
+          if(a=="99+" || Number(a)>=99){
+            var b="99+";
+          }
+          else{
+            var b= Number(a)+1;
+          }
+          $(mis2).html(b);
+        }
+        
+          
+        $.ajax({
+                type: 'POST',
+                url: 'https://literate-sovereign.glitch.me/likes',
+                data: {name: name, time: time},
+                dataType: 'html'
+              });
+
+        });
+          
+                  
+        
+      })
+    </script>
+    <script>
+      $(document).ready(function(){        
+        $('.exit').on('click', function(event){
+          var num= event.target.id.replace('close','')
+          var url="https://literate-sovereign.glitch.me/delete?location=profile&value="+num;
+          
+          if(window.confirm("Are you sure that you want to delete this post?")){ 
+            window.location.assign(url);
+          }
+          
+        })
+        
+        
+      })
+    </script>
+    <script>
+      $(document).ready(function(){
+
+        var a=0;
+        var timeout;
+        
+        $(window).scroll(function(){
+          
+    clearTimeout(timeout);  
+    timeout = setTimeout(function() {         
+         //  if($(document).scrollTop()> $(document).height()-($(window).height()*2)){
+           if((($(document).height()- $(document).scrollTop()) <= $(window).height()*2) && ("<%=len%>">a*10)){
+             a++
+
+             $.ajax({
+               type: 'POST',
+               url: 'https://literate-sovereign.glitch.me/index/load6',
+               data: {round: a, name: '<%=named%>'},
+               dataType: 'html',
+               success: function(d){
+                 d=JSON.parse(d)
+                 $('.grid').append(d.ans);
+      
+                 
+    function getMeta2(url, event) {
+     var img = new Image();
+     img.src = url;
+      
+      var num= event.replace(/\D/g,'')
+      var num2= event;      
+
+      
+       if(img.width>img.height){
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width',w)        
+        $('#d'+num2).css('width',w+10)  
+        $('#d'+num2).css('height',img.height/factor+85)  
+        $('#i'+num2).css('width',w)       
+        $('#f'+num2).css('width',w)       
+       
+        
+        
+      }else{
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width', w)  
+        $('#d'+num2).css('width',w+10)       
+        $('#d'+num2).css('height',img.height/factor+85)
+        $('#i'+num2).css('width',w)               
+        $('#f'+num2).css('width',w)     
+        
+ 
+      }      
+      
+      
+     img.onload= function(){
+      if(img.width>img.height){
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width',w)        
+        $('#d'+num2).css('width',w+10)  
+        $('#d'+num2).css('height',img.height/factor+85)  
+        $('#i'+num2).css('width',w)       
+        $('#f'+num2).css('width',w)       
+       
+        
+        
+      }else{
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width', w)  
+        $('#d'+num2).css('width',w+10)       
+        $('#d'+num2).css('height',img.height/factor+85)
+        $('#i'+num2).css('width',w)               
+        $('#f'+num2).css('width',w)     
+        
+ 
+      }  
+    }
+      
+      
+    }
+
+              
+       for(var t=0; t<d.ans2.length; t++){
+         getMeta2(d.ans2[t]['image'], d.ans2[t]['id'])
+       }
+                 
+                 
+                 
+    $('.bStar').off().on('click',function(e) {
+        var index=e.target.id;
+
+        var cl= index.replace("bStar","").replace("iStar","").replace("likes","");
+        var name=($('.bStar').attr('class')).replace('bStar ','');
+        var tN= "#timeNo"+cl;
+          
+        var time= ($(tN).attr('class')).replace('timeNo a','');
+          
+        var num= index.replace('bStar','likes');
+        
+        var mis= "#bStar"+cl; var mis2= "#likes"+cl;
+     // alert(cl+ " "+ index)
+      
+       if($(mis).css('color')=='rgb(243, 199, 24)'){
+          $(mis).css('color','rgb(51, 51, 51)');
+          var a= $(mis2).html();
+          if(a=="99+" || a==0){
+            var b=a;
+          }
+          else{
+            var b= eval(a-1);
+          }
+          $(mis2).html(b);         
+       }
+       else if($(mis).css('color')=='rgb(51, 51, 51)'){
+          $(mis).css('color','rgb(243, 199, 24)');
+          var a= $(mis2).html();
+          if(a=="99+" || Number(a)>=99){
+            var b="99+";
+          }
+          else{
+            var b= Number(a)+1;
+          }
+          $(mis2).html(b);
+         
+       }      
+
+          
+        $.ajax({
+                type: 'POST',
+                url: 'https://literate-sovereign.glitch.me/likes',
+                data: {name: name, time: time},
+                dataType: 'html'
+              }); 
+
+        });
+          
+          
+                 
+                 
+                                  
+               }
+               
+             })
+           }
+        }, 50)
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="nav"> 
+      <ul class="d">
+        <li class="login" id="lo"><a class="atext" href="https://literate-sovereign.glitch.me/logout"><i class="fa fa-google-plus-square"> </i> Logout</a><i id="ics" class="fa fa-navicon ics"></i><i id="ics2" class="fa fa-navicon ics"></i></li>
+                
+
+      </ul>        
+      <ul class="m">
+        <li class="a1"><img src="https://cdn.hyperdev.com/us-east-1%3A60e6615e-7d9e-47ac-903b-3b4b47372e42%2Flogo.png" alt="" style="height:40px"></li>
+        <li class="a2" id="rest"><a href="https://literate-sovereign.glitch.me/user/profile.html?user='<%=named%>'"><%= '@'+named %></a></li>
+        <li class="a3" id="rest1"><a href="https://literate-sovereign.glitch.me/user/upload.html">Upload</a></li>
+        <li class="a4" id="rest2"><a href="https://literate-sovereign.glitch.me/user/users.html">Users</a></li>        
+        <li class="a45" id="rest25"><a href="https://literate-sovereign.glitch.me/user/search.html"><i class="fa fa-search"></i> Search</a></li>        
+        <li class="a5" id="rest3"><button><i class="fa fa-google-plus-square"></i>
+          <a href="https://literate-sovereign.glitch.me/logout">Logout</a>
+          </button></li>        
+      </ul>
+      </div>
+
+    </header>
+
+    <main>
+      <div class="spinner">
+        <i class="fa fa-spinner"></i>
+        <p class="loading">Loading</p>
+      </div>      
+      <% if(length==0){ %>
+      <% if(user!=named){ %>
+
+      <p id="blocks">
+        <%=named%> has not uploaded any images
+      </p>
+      <% } %>
+      <% if(user==named){ %>
+
+      <p id="blocks">
+        You have not uploaded any images
+      </p>
+      <% } %>
+      <% } %>
+      <div class="mai mai2">
+      <div class="content grid" id="ul" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 275 }'>
+   <!-- <% for(var i=0; i<length; i++){ %>
+      <li class="block grid-item" id="d<%= i %>" >
+      <% if(user==named){ %>
+
+        <div class="close">
+          <a><i class="fa fa-close exit" id="close<%= i %>"></i></a>
+        </div>
+        
+            <% } %>
+
+        <div class="blockImg">
+          <img src="<%= arr[i][2] %>" onerror="this.src='http://www.greytrix.com/blogs/sageaccpacerp/wp-content/uploads/2012/11/1.-Error-code.bmp'; this.className='badImg'" id="e<%= i %>" onload="getMeta('<%= arr[i][2] %>',event)">
+        </div>
+        
+        <p class="desc" id="i<%= i %>">
+          a pic by <a href="https://literate-sovereign.glitch.me/views/profile.html?user=<%= arr[i][0] %>">@<% if(arr[i][0].length >14){ %> <%= arr[i][0].split('').splice(0,11).join('')+'...';  %><% } %><% if(arr[i][0].length <=14){ %><%= arr[i][0] %><% } %></a>
+        </p>
+        <div class="col-xs-12 info" id="f<%= i %>" >
+          <div class="col-xs-2" id="g<%= i %>" >
+            <a href="https://literate-sovereign.glitch.me/views/profile.html?user=<%= arr[i][0] %>"><img src="<%= arr[i][1] %>"  onerror="this.src='https://cdn4.vectorstock.com/i/1000x1000/43/13/bearded-man-s-face-hipster-character-fashion-vector-18884313.jpg'"></a>
+          </div>
+          <div class="col-xs-5">
+            
+          </div>
+          
+            
+          <div <% if(arr[i][3].indexOf(user) >= 0){ %>class="col-xs-2 gold"<% } %> <% if(!arr[i][3].indexOf(user) >= 0){ %>class="col-xs-2"<% } %> id="h<%= i %>">
+            <div class="star" >
+              <button class="bStar <%=arr[i][0]%>" id="bStar<%=i%>"><tim class="timeNo a<%=arr[i][4]%>" id="timeNo<%=i%>"></tim><i class="fa fa-star star<%=i%>" id="iStar<%=i%>"></i> <likes id="likes<%=i%>"><% if(arr[i][3].length >99){ %>99<% } %><% if(arr[i][3].length <=99){ %><%= arr[i][3].length%><% } %></likes></button>
+            </div>
+          </div>
+              
+              
+        </div>  
+      </li>
+      <% } %>   -->
+      
+ <% for(var i=0; i<length; i++){ %>
+      <li class="block grid-item" id="d<%= i %>" >
+      <% if(user==named){ %>
+
+        <div class="close">
+          <a><i class="fa fa-close exit" id="close<%= i %>"></i></a>
+        </div>
+        
+            <% } %>
+
+        <div class="blockImg">
+          <img src="<%= arr[i][2] %>" onerror="this.src='http://www.greytrix.com/blogs/sageaccpacerp/wp-content/uploads/2012/11/1.-Error-code.bmp'; this.className='badImg'" id="e<%= i %>" onload="getMeta('<%= arr[i][2] %>',event)">
+        </div>
+        
+        <p class="desc" id="i<%= i %>">
+          a pic by <a href="https://literate-sovereign.glitch.me/user/profile.html?user=<%= arr[i][0] %>">@<% if(arr[i][0].length >14){ %> <%= arr[i][0].split('').splice(0,11).join('')+'...';  %><% } %><% if(arr[i][0].length <=14){ %><%= arr[i][0] %><% } %></a>
+        </p>
+        <div class="col-xs-12 info" id="f<%= i %>" >
+          <div class="col-xs-2" id="g<%= i %>" >
+            <a href="https://literate-sovereign.glitch.me/user/profile.html?user=<%= arr[i][0] %>"><img src="<%= arr[i][1] %>"  onerror="this.src='https://cdn4.vectorstock.com/i/1000x1000/43/13/bearded-man-s-face-hipster-character-fashion-vector-18884313.jpg'"></a>
+          </div>
+          <div class="col-xs-5">
+            
+          </div>
+          
+            
+          <div <% if(arr[i][3].indexOf(user) >= 0){ %>class="col-xs-2 gold"<% } %> <% if(!arr[i][3].indexOf(user) >= 0){ %>class="col-xs-2"<% } %> id="h<%= i %>">
+            <div class="star" >
+              <button class="bStar <%=arr[i][0]%>" id="bStar<%=i%>"><tim class="timeNo a<%=arr[i][4]%>" id="timeNo<%=i%>"></tim><i class="fa fa-star star<%=i%>" id="iStar<%=i%>"></i> <likes id="likes<%=i%>"><% if(arr[i][3].length >99){ %>99<% } %><% if(arr[i][3].length <=99){ %><%= arr[i][3].length%><% } %></likes></button>
+            </div>
+          </div>
+              
+              
+        </div>  
+      </li>
+      <% } %>       
+      
+      </div>
+     </div>        
+    </main>
+
+  </body>
+</html>
