@@ -1,0 +1,1167 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Picture Share!</title>
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://cdn.hyperdev.com/us-east-1%3A60e6615e-7d9e-47ac-903b-3b4b47372e42%2Flogo.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="ejs.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/client.js" defer></script>
+    <script src="https://literate-sovereign.glitch.me/masonry.js"></script>
+    
+    <style>
+      .a45{background: #d9d9d9;}
+    </style>
+    <script>
+      $(document).ready(function(){
+          $('#ics').on('click', function(){
+          $('#rest').css('display', 'block');
+          $('#rest1').css('display', 'block');
+          $('#rest2').css('display', 'block');
+          $('#rest3').css('display', 'block');
+          $('#ics').css('display', 'none');
+          $('#ics2').css('display', 'inline');
+          $('#ics2').css('opacity', '1');
+        
+        })
+
+        $('#ics2').on('click', function(){
+          $('#rest').css('display', 'none');
+          $('#rest1').css('display', 'none');
+          $('#rest2').css('display', 'none');
+          $('#rest3').css('display', 'none');
+          $('#ics').css('display', 'inline');
+          $('#ics2').css('display', 'none');          
+        }) 
+        
+   function onResize(){    
+if ($(window).width() > 900) {
+          $('#ics').css('display', 'none');          
+          $('#ics2').css('display', 'none');          
+          $('#rest').css('display', 'inline');
+          $('#rest1').css('display', 'inline');
+          $('#rest2').css('display', 'inline');
+          $('#rest3').css('display', 'none');
+}
+else {
+  
+          $('#ics').css('display', 'inline');          
+          $('#ics2').css('display', 'none');          
+          $('#rest').css('display', 'none');
+          $('#rest1').css('display', 'none');
+          $('#rest2').css('display', 'none');
+          $('#rest3').css('display', 'none');
+}
+    } 
+        
+        $(window).resize(onResize);
+
+      
+      })
+    </script>
+        <script>
+$('.grid').masonry({
+  // options...
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});      
+    </script>
+    <script>
+      var tot=10; var count=0; var lH=0; var arr=[[]]; var a=0; var mT=0;
+      var darr=[[]]; var total=[];
+      
+    function getMeta(url, event) { 
+     var img = new Image();
+     img.src = url;
+
+     var num= event.target.id.replace(/\D/g,'')
+      
+     img.onload= function(){
+       if(img.width>img.height){
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num).css('width',w)        
+        $('#d'+num).css('width',w+10)  
+        $('#d'+num).css('height',img.height/factor+85)       
+        $('#i'+num).css('width',w)       
+        $('#f'+num).css('width',w)       
+
+      }else{
+
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num).css('width', w)  
+        $('#d'+num).css('width',w+10)       
+        $('#d'+num).css('height',img.height/factor+85)
+        $('#i'+num).css('width',w)               
+        $('#f'+num).css('width',w)       
+      }
+     }
+      
+      if(img.width>img.height){
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num).css('width',w)        
+        $('#d'+num).css('width',w+10)  
+        $('#d'+num).css('height',img.height/factor+85)       
+        $('#i'+num).css('width',w)       
+        $('#f'+num).css('width',w)       
+
+      }else{
+
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num).css('width', w)  
+        $('#d'+num).css('width',w+10)       
+        $('#d'+num).css('height',img.height/factor+85)
+        $('#i'+num).css('width',w)               
+        $('#f'+num).css('width',w)       
+      }
+      
+    }
+      
+      
+      
+      
+    </script>
+    <script>
+      $(document).ready(function(){
+        var myArr= $('#anse').html()
+        
+        //$('#anse2').html(myArr)
+        
+        $('#select1').on('change', function(){
+          $('#anse2').css('display','none')              
+          $('#ul').css('display','block')
+
+          if($('#select1').val()=='0'){
+            $('.option1').css('display','none')
+            $('#select2').css('display','none')
+            $('.option1a').css('display','none')
+            $('.option1b').css('display','none')            
+            $('#option1a2').css('display','none')
+            $('#option1b2').css('display','none')
+            $('.lList2').css('display','none')            
+            $('.lList3').css('display','none')
+            $('.lList4').css('display','none')
+                    $('#anse2').html()
+
+          }          
+          if($('#select1').val()=='1'){
+            $('.option1').css('display','block')
+            $('#select2').css('display','block')
+            $('.option1a').css('display','none')
+            $('.option1b').css('display','none')            
+            $('#option1a2').css('display','none')
+            $('#option1b2').css('display','none')
+            $('.lList3').css('display','none')
+            $('.lList4').css('display','none')
+                    $('#anse2').html()
+            
+          }
+          if($('#select1').val()=='2'){
+            $('.lList3').css('display','block')
+            $('.lList2').css('display','none')
+            $('.lList4').css('display','none')
+            $('#select2').css('display','none')
+                    $('#anse2').html()
+            
+          }
+          if($('#select1').val()=='3'){
+            $('.lList4').css('display','block')
+            $('.lList2').css('display','none')
+            $('.lList3').css('display','none')
+            $('#select2').css('display','none')
+              
+              var m=$('#anse').html()
+              m=JSON.parse(m)
+              var art=m.my;
+              
+              art=art.sort((a,b)=>b['active']-a['active'])
+              $('#anse2').html(art.map((x,i)=>'<p>'+parseInt(i+1)+'. <a href="https://literate-sovereign.glitch.me/user/profile.html?user='+x.name+'">@'+x.name+'</a></p>'))
+              $('#anse2').css('display','block')
+              $('#ul').css('display','none')
+            
+          }
+          
+        })
+        
+        $('#select2').on('change', function(){
+              $('#ul').css('display','block')
+              $('#anse2').css('display','none')
+          
+            if($('#select2').val()=='0'){
+              $('#ul').css('display','block')
+              $('#anse2').css('display','none')
+            }
+          
+            if($('#select2').val()=='1'){
+              $('.option1a').css('display','none')
+              $('#option1a2').css('display','none')
+              $('.option1b').css('display','none')
+              $('#option1b2').css('display','none')
+              
+              var m=$('#anse').html()
+              m=JSON.parse(m)
+              var art=m.my;
+              var nArr=[];
+              
+              for(var j=0; j<art.length; j++){
+                var name=art[j]['name'];
+                nArr.push(name)
+              }
+              
+              nArr=nArr.sort();
+              
+              //$('#anse2').html(nArr)
+              $('#anse2').html(nArr.map((x,i)=>'<p>'+parseInt(i+1)+'. <a href="https://literate-sovereign.glitch.me/user/profile.html?user='+x+'">@'+x+'</a></p>'))
+              $('#anse2').css('display','block')
+              $('#ul').css('display','none')
+              
+            }
+            
+            if($('#select2').val()=='2'){
+              $('.option1a').css('display','none')
+              $('#option1a2').css('display','none')
+              $('.option1b').css('display','none')
+              $('#option1b2').css('display','none')
+              
+              var m=$('#anse').html()
+              m=JSON.parse(m)
+              var art=m.my;
+              var nArr=[];
+              
+              for(var j=0; j<art.length; j++){
+                var name=art[j]['name'];
+                nArr.push(name)
+              }
+              
+              nArr=nArr.sort().reverse();
+
+
+              //$('#anse2').html(nArr)
+              $('#anse2').html(nArr.map((x,i)=>'<p>'+i+1+'. <a href="https://literate-sovereign.glitch.me/user/profile.html?user='+x+'">@'+x+'</a></p>'))
+              $('#anse2').css('display','block')
+              $('#ul').css('display','none')              
+            
+            }
+
+            if($('#select2').val()=='3'){
+              $('.option1a').css('display','block')
+              $('#option1a2').css('display','block')
+              $('.option1b').css('display','none')
+              $('#option1b2').css('display','none')
+              
+            
+            }
+            
+            if($('#select2').val()=='4'){
+              $('.option1a').css('display','none')
+              $('#option1a2').css('display','none')
+              $('.option1b').css('display','block')
+              $('#option1b2').css('display','block')          
+            }
+    
+        })
+        
+         $('#select3').on('change', function(){
+           
+            if($('#select3').val()=='0'){
+              $('#ul').css('display','block')
+              $('#anse2').css('display','none')
+            }
+              
+            if($('#select3').val()=='1'){
+              var m=$('#anse').html()
+              m=JSON.parse(m)
+              var art=m.my;
+              
+              art=art.sort((a,b)=>a['date']-b['date'])
+              $('#anse2').html(art.map((x,i)=>'<p>'+parseInt(i+1)+'. <a href="https://literate-sovereign.glitch.me/user/profile.html?user='+x.name+'">@'+x.name+'</a></p>'))
+              $('#anse2').css('display','block')
+              $('#ul').css('display','none')
+            }
+            
+            if($('#select3').val()=='2'){
+              $('#ul').css('display','none')
+              
+              var m=$('#anse').html()
+              m=JSON.parse(m)
+              var art=m.my;
+              
+              art=art.sort((a,b)=>b['date']-a['date'])
+              $('#anse2').html(art.map((x,i)=>'<p>'+parseInt(i+1)+'. <a href="https://literate-sovereign.glitch.me/user/profile.html?user='+x.name+'">@'+x.name+'</a></p>'))
+              $('#anse2').css('display','block')
+              $('#ul').css('display','none')
+            }
+           
+         })
+        
+        $('#option1a2').on('change', function(){
+          
+          $('#ul').css('display','none')
+              
+          var m=$('#anse').html()
+          m=JSON.parse(m)
+          var art=m.my;
+          var nArr=[];
+          
+          for(var t=0; t<art.length; t++){
+            var f= art[t]['name'].split('');
+            
+            if(f[0]==$('#option1a2').val()){               
+              nArr.push(art[t]['name'])
+            }
+          }
+              
+          art=art.sort((a,b)=>b['date']-a['date'])
+          $('#anse2').html(nArr.map((x,i)=>'<p>'+parseInt(i+1)+'. <a href="https://literate-sovereign.glitch.me/user/profile.html?user='+x+'">@'+x+'</a></p>'))
+          $('#anse2').css('display','block')
+          $('#ul').css('display','none')          
+        })
+        
+        
+        $('#option1b2').on('change', function(){
+          $('#ul').css('display','none')
+          var m=$('#anse').html()
+          m=JSON.parse(m)
+          var art=m.my;
+          var nArr=[];
+          
+          for(var t=0; t<art.length; t++){
+            var f= art[t]['name'];
+            var p= $('#option1b2').val();
+            
+            if(f.match(p)){               
+              nArr.push(art[t]['name'])
+            }
+          }
+              
+          art=art.sort((a,b)=>b['date']-a['date'])
+          $('#anse2').html(nArr.map((x,i)=>'<p>'+parseInt(i+1)+'. <a href="https://literate-sovereign.glitch.me/user/profile.html?user='+x+'">@'+x+'</a></p>'))
+          $('#anse2').css('display','block')
+          $('#ul').css('display','none')          
+        })        
+        
+
+      })
+    </script>
+    <script>
+     $(document).ready(function(){ 
+       $('.laList').css('opacity', '0')
+       $('.grid2').css('opacity', '0')
+       $('.spinner2').css('display', 'none')
+       
+       
+     setTimeout(function(){
+
+       // $('.grid').attr("data-masonry", '{ "itemSelector": ".grid-item", "columnWidth": 275 }')              
+   //   $('.grid-item#d0').css('height',50)
+var elem = document.querySelector('.grid2');
+var msnry = new Masonry( elem, {
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 275
+});
+
+// element argument can be a selector string
+//   for an individual element
+var msnry = new Masonry( '.grid', {
+  // options
+});
+     $('.laList').css('opacity', '1')
+     $('.grid2').css('opacity', '1')       
+     $('.spinner').css('display', 'none')
+    
+                          },1000)
+    })
+    </script>  
+    <script>
+        function myF2(n, d, l, i){
+          var likes= l.length;
+          
+      /*  var index=e.target.id;
+        var cl= index.replace("bStar","").replace("iStar","").replace("likes","");
+        var name=($('.bStar').attr('class')).replace('bStar ','');
+        var tN= "#timeNo"+cl;
+          
+        var time= ($(tN).attr('class')).replace('timeNo a','');
+          
+        var num= index.replace('bStar','likes');
+        */
+        var mis= "#bStar"+i; var mis2= "#likes"+i;
+          
+        if($(mis).css('color')=='rgb(243, 199, 24)'){
+          $(mis).css('color','rgb(51, 51, 51)');
+          var a= $(mis2).html();
+          if(a=="99+" || a==0){
+            var b=a;
+          }
+          else{
+            var b= eval(a-1);
+          }
+          $(mis2).html(b);
+        }
+        else if($(mis).css('color')=='rgb(51, 51, 51)'){
+          $(mis).css('color','rgb(243, 199, 24)');
+          var a= $(mis2).html();
+          if(a=="99+" || Number(a)>=99){
+            var b="99+";
+          }
+          else{
+            var b= Number(a)+1;
+          }
+          $(mis2).html(b);
+        }
+        
+          
+        $.ajax({
+                type: 'POST',
+                url: 'https://literate-sovereign.glitch.me/likes',
+                data: {name: n, time: d},
+                dataType: 'html'
+              });
+  
+        }
+                
+        
+    </script>    
+    <script>
+    $(document).ready(function(){
+      
+    })
+    
+    </script>
+    
+    
+  </head>
+  <body style="background:#cccccc">
+    <header>
+      <div class="nav"> 
+      <ul class="d">
+        <li class="login" id="lo"><a class="atext" href="https://literate-sovereign.glitch.me/logout"><i class="fa fa-google-plus-square"> </i> Logout</a><i id="ics" class="fa fa-navicon ics"></i><i id="ics2" class="fa fa-navicon ics"></i></li>
+                
+
+      </ul>        
+      <ul class="m">
+        <li class="a1"><img src="https://cdn.hyperdev.com/us-east-1%3A60e6615e-7d9e-47ac-903b-3b4b47372e42%2Flogo.png" alt="" style="height:40px"></li>
+        <li class="a2" id="rest"><a href="https://literate-sovereign.glitch.me/user/profile.html"><%= '@'+user %></a></li>
+        <li class="a3" id="rest1"><a href="https://literate-sovereign.glitch.me/user/upload.html">Upload</a></li>
+        <li class="a4" id="rest2"><a href="https://literate-sovereign.glitch.me/user/users.html">Users</a></li>        
+        <li class="a45" id="rest25"><a href="https://literate-sovereign.glitch.me/user/search.html"><i class="fa fa-search"></i> Search</a></li>        
+        <li class="a5" id="rest3"><button><i class="fa fa-google-plus-square"></i>
+          <a href="https://literate-sovereign.glitch.me/logout">Logout</a>
+          </button></li>        
+      </ul>
+      </div>
+
+    </header>
+    <script>
+      $(document).ready(function(){
+        $('#hidden').hide();
+        $('.lala').hide();
+        
+        $('.tagS').keypress(function(event){
+          if(event.keyCode=='13'){
+            $('#hidden').html()
+            search();
+          }
+        })
+        
+        $('.sea').on('click', function(){
+            $('#hidden').html()          
+            search();
+        })
+            
+        
+        function search(){
+          $.ajax({type: 'GET',
+                  url: 'https://literate-sovereign.glitch.me/user/search2?user='+$('.tagS').val(),
+                  dataType: 'html',
+                  success: function(val){
+                    //$('#hidden').html(val)
+                    if(JSON.parse(val).my=="There are no posts with the tag that you entered"){
+                      $('#hidden').html(JSON.parse(val).my)
+                      $('#hidden').show('fadeIn')
+                      $('.lala').hide();
+                      
+                    }
+                    else{
+                      $('#hidden').hide()
+                      $('.lala').show()
+                      $('.lala').css('opacity','0')
+                   //   $('#anse2').html(val);
+                      var arrVal= JSON.parse(val).my;
+                      $('#ul').html('');
+                      for(var i=0; i<arrVal.length; i++){
+                       // $('#ul').append("<li class='block grid-item uList' id='d"+i+"'><div class='blockImg'><img src='"+arrVal[i]['image']+"' class='imima' onerror=\"this.src='http://www.greytrix.com/blogs/sageaccpacerp/wp-content/uploads/2012/11/1.-Error-code.bmp'; this.className='badImg'\" id='e"+i+"' onload=\"getMeta('"+arrVal[i]['image']+"',event)\"></div><p class='desc' id='i"+i+"'>a pic by: <a href='https://literate-sovereign.glitch.me/user/profile.html?user="+arrVal[i]['name']+"'>@ "+arrVal[i]['name']+"</a></p><div class='col-xs-12 info' id='f"+i+"'><div class='col-xs-2' id='g"+i+"'><a href='https://literate-sovereign.glitch.me/views/profile.html?user="+arrVal[i]['name']+"'><img src='"+arrVal[i]['icon']+"' alt='' onerror=\"this.src='https://cdn4.vectorstock.com/i/1000x1000/43/13/bearded-man-s-face-hipster-character-fashion-vector-18884313.jpg'\"></a></div><div class='col-xs-5'></div><div class='col-xs-2' id='h"+i+"' ><div class='star' ><i class='fa fa-star'></i> "+arrVal[i]['likes'].length+"</div></div></div></li>")  
+                        if(arrVal[i]['likes'].length>99){
+                          var lL= "99+"
+                        }
+                        else{
+                          var lL= arrVal[i]['likes'].length;
+                        }
+                        
+                        if(arrVal[i]['likes'].indexOf('<%=user%>')>=0){
+                          var col= "col-xs-2 gold"
+                        }
+                        else{
+                          var col= "col-xs-2"
+                        }
+                          
+                        //onclick='myF2("+arrVal[i]['name']+","+ arrVal[i]['date']+","+ arrVal[i]['likes']+","+ i+")'
+                        $('#ul').append("<li class='block grid-item uList' id='d"+i+"'><div class='blockImg'><img src='"+arrVal[i]['image']+"' class='imima' onerror=\"this.src='http://www.greytrix.com/blogs/sageaccpacerp/wp-content/uploads/2012/11/1.-Error-code.bmp'; this.className='badImg'\" id='e"+i+"' onload=\"getMeta('"+arrVal[i]['image']+"',event)\"></div><p class='desc' id='i"+i+"'>a pic by: <a href='https://literate-sovereign.glitch.me/user/profile.html?user="+arrVal[i]['name']+"'>@ "+arrVal[i]['name']+"</a></p><div class='col-xs-12 info' id='f"+i+"'><div class='col-xs-2' id='g"+i+"'><a href='https://literate-sovereign.glitch.me/views/profile.html?user="+arrVal[i]['name']+"'><img src='"+arrVal[i]['icon']+"' alt='' onerror=\"this.src='https://cdn4.vectorstock.com/i/1000x1000/43/13/bearded-man-s-face-hipster-character-fashion-vector-18884313.jpg'\"></a></div><div class='col-xs-5'></div><div class='"+col+"'  id='h"+i+"'><div class='star'><button onclick=\"getMeta2('"+arrVal[i]['name']+"','"+ arrVal[i]['date']+"','"+ arrVal[i]['likes'].length+"','"+ i+"')\" class='bStar "+arrVal[i]['name']+"' id='bStar"+i+"'><tim class='timeNo a"+arrVal[i]['date']+"' id='timeNo"+i+"'></tim><i class='fa fa-star star"+i+"' id='iStar"+i+"'></i> <likes id='likes"+i+"'>"+ lL +"</likes></button></div></div></div></li>")  
+                      }
+
+                      
+//<div "+arrVal[i]['likes'].length>=0? \"class='col-xs-2 gold'\": \"class='col-xs-2 gold'\" +"  id='h"+i+"'><div class='star'><button class='bStar "+arrVal[i]['name']+"' id='bStar"+i+'><tim class='timeNo a"+arrVal[i]['date']+"' id='timeNo"+i+"'></tim><i class='fa fa-star star"+i+"' id='iStar"+i+"'></i> <likes id='likes"+i+"'>"+ arrVal[i]['likes'].length>99?'99+': arrVal[i]['likes'].length +"</likes></button></div></div>                      
+                      
+                      
+                      $('.spinner2').show()
+                             
+                      
+function display(){
+
+       // $('.grid').attr("data-masonry", '{ "itemSelector": ".grid-item", "columnWidth": 275 }')              
+   //   $('.grid-item#d0').css('height',50)
+var elem = document.querySelector('.grid2');
+var msnry = new Masonry( elem, {
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 275
+});
+
+// element argument can be a selector string
+//   for an individual element
+var msnry = new Masonry( '.grid', {
+  // options
+});
+     $('.laList').css('opacity', '1')
+     $('.grid2').css('opacity', '1')
+     $('.lala').css('opacity', '1')         
+     $('.spinner2').hide()
+    
+                          }                   
+                      
+                      
+     setTimeout(function(){
+       display()
+       setInterval(function(){
+         display()
+       },2000)
+     },1000)
+       
+     setTimeout(function(){
+       display()
+     },3000)       
+       
+     setTimeout(function(){
+       display()
+     },5000)
+       
+     setTimeout(function(){
+       display()
+     },7000)                      
+                      
+
+                      
+                                            
+                      
+$(document).ready(function(){
+
+        var a=0;
+        var timeout;
+        
+        $(window).scroll(function(){
+          
+    clearTimeout(timeout);  
+    timeout = setTimeout(function() {         
+         //  if($(document).scrollTop()> $(document).height()-($(window).height()*2)){
+           if((($(document).height()- $(document).scrollTop()) <= $(window).height()*2) && (JSON.parse(val).len>a*10)){
+             a++
+
+             $.ajax({
+               type: 'POST',
+               url: 'https://literate-sovereign.glitch.me/index/load7',
+               data: {round: a, name: $('.tagS').val()},
+               dataType: 'html',
+               success: function(d){
+                 d=JSON.parse(d)
+                 $('.grid2').append(d.ans);
+                 
+    function getMeta2(url, event) {
+     var img = new Image();
+     img.src = url;
+      var num= event.replace(/\D/g,'')
+      var num2= event;      
+
+      
+       if(img.width>img.height){
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width',w)        
+        $('#d'+num2).css('width',w+10)  
+        $('#d'+num2).css('height',img.height/factor+85)  
+        $('#i'+num2).css('width',w)       
+        $('#f'+num2).css('width',w)       
+       
+        
+        
+      }else{
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width', w)  
+        $('#d'+num2).css('width',w+10)       
+        $('#d'+num2).css('height',img.height/factor+85)
+        $('#i'+num2).css('width',w)               
+        $('#f'+num2).css('width',w)     
+        
+ 
+      }      
+      
+      
+     img.onload= function(){
+      if(img.width>img.height){
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width',w)        
+        $('#d'+num2).css('width',w+10)  
+        $('#d'+num2).css('height',img.height/factor+85)  
+        $('#i'+num2).css('width',w)       
+        $('#f'+num2).css('width',w)       
+       
+        
+        
+      }else{
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width', w)  
+        $('#d'+num2).css('width',w+10)       
+        $('#d'+num2).css('height',img.height/factor+85)
+        $('#i'+num2).css('width',w)               
+        $('#f'+num2).css('width',w)     
+        
+ 
+      }  
+    }
+      
+      
+    }
+
+              
+       for(var t=0; t<d.ans2.length; t++){
+         getMeta2(d.ans2[t]['image'], d.ans2[t]['id'])
+       }
+                 
+                 
+                 
+    $('.bStar').off().on('click',function(e) {
+        var index=e.target.id;
+        var cl= index.replace("bStar","").replace("iStar","").replace("likes","");
+        var name=($('.bStar').attr('class')).replace('bStar ','');
+        var tN= "#timeNo"+cl;
+        var name= ($('#bStar'+cl).attr('class')).replace('bStar ','');
+          
+        var time= ($(tN).attr('class')).replace('timeNo a','');
+          
+        var num= index.replace('bStar','likes');
+        
+        var mis= "#bStar"+cl; var mis2= "#likes"+cl;
+     // alert(mis)
+     // alert($(mis2).css('color')+ " "+ index);
+if(cl.replace(/[a-z]*[A-Z]*/gi,'') == cl){
+   
+   }
+else{
+       if($(mis).css('color')=='rgb(243, 199, 24)'){
+          $(mis).css('color','rgb(51, 51, 51)');
+          var a= $(mis2).html();
+          if(a=="99+" || a==0){
+            var b=a;
+          }
+          else{
+            var b= eval(a-1);
+          }
+          $(mis2).html(b);         
+       }
+       else if($(mis).css('color')=='rgb(51, 51, 51)'){
+          $(mis).css('color','rgb(243, 199, 24)');
+          var a= $(mis2).html();
+          if(a=="99+" || Number(a)>=99){
+            var b="99+";
+          }
+          else{
+            var b= Number(a)+1;
+          }
+          $(mis2).html(b);
+         
+       }      
+
+          
+        $.ajax({
+                type: 'POST',
+                url: 'https://literate-sovereign.glitch.me/likes2',
+                data: {name: name, time: time},
+                dataType: 'html'
+              }); 
+}
+        });
+          
+          
+                 
+                 
+                                  
+               }
+               
+             })
+           }
+        }, 50)
+        })
+      })                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                    }
+                  }
+                 })
+        }
+        
+        
+      })
+    </script>
+
+    <main id="mainUsers">
+      <div class="spinner">
+        <i class="fa fa-spinner"></i>
+        <p class="loading">Loading</p>
+      </div>
+      
+      <h1 id="nom" class="cu">
+        Search Posts
+      </h1>
+      
+      <h2 id="vsp">
+        <a>View Starred Posts <i class="fa fa-star"></i></a>
+      </h2>
+      
+      <h2 id="vsp2">
+        <a>Go Back <i class="fa fa-arrow-circle-right"></i></a>
+      </h2>
+      
+      <div class="superStar col-xs-12">
+        <div class="content grid22" id="ul2" >
+  
+        </div>             
+      </div>
+    
+      <p class="topSearch">
+        <input type="text" class="tagS" placeholder="Enter tag...." onfocus="this.placeholder=''" onblur="this.placeholder='Enter tag....'"><i class="fa fa-search sea"></i>
+      </p>    
+      
+      <div id="hidden">
+        {my:[]}
+      </div>
+      
+      <div class="spinner2">
+        <i class="fa fa-spinner"></i>
+        <p class="loading">Loading</p>
+      </div>      
+      <div class="col-xs-12 laList lala">
+        
+  
+      <div class="col-xs-12 rList rList2">
+        
+        <div id="anse2">
+        </div>
+        <div id="anse">
+      <%=JSON.stringify({my:arr})%>
+        </div>
+
+        <div class="content grid2 g23" id="ul" >
+  
+   
+        
+        </div>
+        
+      </div>   
+        
+      </div>        
+    </main>
+      <script>
+       function getMeta2(n, d, l, i) { 
+        var mis= "#bStar"+i; var mis2= "#likes"+i;
+     //  alert(mis)
+         
+        if($(mis).css('color')=='rgb(243, 199, 24)'){
+          $(mis).css('color','rgb(51, 51, 51)');
+          var a= $(mis2).html();
+          if(a=="99+" || a==0){
+            var b=a;
+          }
+          else{
+            var b= eval(a-1);
+          }
+          $(mis2).html(b);
+        }
+        else if($(mis).css('color')=='rgb(51, 51, 51)'){
+          $(mis).css('color','rgb(243, 199, 24)');
+          var a= $(mis2).html();
+          if(a=="99+" || Number(a)>=99){
+            var b="99+";
+          }
+          else{
+            var b= Number(a)+1;
+          }
+          $(mis2).html(b);
+        }
+        
+          
+        $.ajax({
+                type: 'POST',
+                url: 'https://literate-sovereign.glitch.me/likes2',
+                data: {name: n, time: d},
+                dataType: 'html'
+              });
+  
+        }
+      </script>
+      <script>
+        $(document).ready(function(){
+          $('#vsp').on('click', function(){
+            $('#vsp').css('display','none')
+            $('#vsp2').css('display','block')
+            $('.topSearch').css('display','none')
+            $('.laList').css('display','none')
+            $('.grid22').css('opacity', '0')
+            $('.superStar').css('opacity','1')
+            $('#hidden').html()
+
+            
+            
+         $.ajax({type: 'GET',
+                  url: 'https://literate-sovereign.glitch.me/user/search3?',
+                  dataType: 'html',
+                  success: function(val){
+                    //$('#hidden').html(val)
+                    if(JSON.parse(val).my=="There are no starred posts"){
+                      $('.superStar').html("<p class='noStar'>You have not starred any posts</p>")
+                      $('.superStar').hide()
+                       setTimeout(function(){
+                         $('.superStar').show('fadeIn')
+                         
+                       }, 1000)
+                    }
+                    else{
+                    //  $('#hidden').hide()
+                    //  $('.lala').show()
+                   //   $('.lala').css('opacity','0')
+                   //   $('#anse2').html(val);
+                      var arrVal= JSON.parse(val).my;
+                      $('#ul2').html('');
+                      for(var i=0; i<arrVal.length; i++){
+                       // $('#ul').append("<li class='block grid-item uList' id='d"+i+"'><div class='blockImg'><img src='"+arrVal[i]['image']+"' class='imima' onerror=\"this.src='http://www.greytrix.com/blogs/sageaccpacerp/wp-content/uploads/2012/11/1.-Error-code.bmp'; this.className='badImg'\" id='e"+i+"' onload=\"getMeta('"+arrVal[i]['image']+"',event)\"></div><p class='desc' id='i"+i+"'>a pic by: <a href='https://literate-sovereign.glitch.me/user/profile.html?user="+arrVal[i]['name']+"'>@ "+arrVal[i]['name']+"</a></p><div class='col-xs-12 info' id='f"+i+"'><div class='col-xs-2' id='g"+i+"'><a href='https://literate-sovereign.glitch.me/views/profile.html?user="+arrVal[i]['name']+"'><img src='"+arrVal[i]['icon']+"' alt='' onerror=\"this.src='https://cdn4.vectorstock.com/i/1000x1000/43/13/bearded-man-s-face-hipster-character-fashion-vector-18884313.jpg'\"></a></div><div class='col-xs-5'></div><div class='col-xs-2' id='h"+i+"' ><div class='star' ><i class='fa fa-star'></i> "+arrVal[i]['likes'].length+"</div></div></div></li>")  
+                        if(arrVal[i][1].length>99){
+                          var lL= "99+"
+                        }
+                        else{
+                          var lL= arrVal[i][1].length;
+                        }
+                        
+                        if(arrVal[i][1].indexOf('<%=user%>')>=0){
+                          var col= "col-xs-2 gold"
+                        }
+                        else{
+                          var col= "col-xs-2"
+                        }
+                        
+                        $('#ul2').show()
+                        //onclick='myF2("+arrVal[i]['name']+","+ arrVal[i]['date']+","+ arrVal[i]['likes']+","+ i+")'
+                        $('#ul2').append("<li class='block grid-item uList' id='d"+i+"'><div class='blockImg'><img src='"+arrVal[i][2]+"' class='imima' onerror=\"this.src='http://www.greytrix.com/blogs/sageaccpacerp/wp-content/uploads/2012/11/1.-Error-code.bmp'; this.className='badImg'\" id='e"+i+"' onload=\"getMeta('"+arrVal[i][2]+"',event)\"></div><p class='desc' id='i"+i+"'>a pic by: <a href='https://literate-sovereign.glitch.me/user/profile.html?user="+arrVal[i][0]+"'>@ "+arrVal[i][0]+"</a></p><div class='col-xs-12 info' id='f"+i+"'><div class='col-xs-2' id='g"+i+"'><a href='https://literate-sovereign.glitch.me/views/profile.html?user="+arrVal[i][0]+"'><img src='"+arrVal[i][3]+"' alt='' onerror=\"this.src='https://cdn4.vectorstock.com/i/1000x1000/43/13/bearded-man-s-face-hipster-character-fashion-vector-18884313.jpg'\"></a></div><div class='col-xs-5'></div><div class='"+col+"'  id='h"+i+"'><div class='star'><button onclick=\"getMeta2('"+arrVal[i][0]+"','"+ arrVal[i][4]+"','"+ arrVal[i][1].length+"','"+ i+"')\" class='bStar "+arrVal[i][0]+"' id='bStar"+i+"'><tim class='timeNo a"+arrVal[i][4]+"' id='timeNo"+i+"'></tim><i class='fa fa-star star"+i+"' id='iStar"+i+"'></i> <likes id='likes"+i+"'>"+ lL +"</likes></button></div></div></div></li>")  
+                        //$('#ul2').append(JSON.parse(val).ansa)
+                      }
+
+                      
+//<div "+arrVal[i]['likes'].length>=0? \"class='col-xs-2 gold'\": \"class='col-xs-2 gold'\" +"  id='h"+i+"'><div class='star'><button class='bStar "+arrVal[i]['name']+"' id='bStar"+i+'><tim class='timeNo a"+arrVal[i]['date']+"' id='timeNo"+i+"'></tim><i class='fa fa-star star"+i+"' id='iStar"+i+"'></i> <likes id='likes"+i+"'>"+ arrVal[i]['likes'].length>99?'99+': arrVal[i]['likes'].length +"</likes></button></div></div>                      
+                      
+                      
+                      $('.spinner2').show()
+                             
+                      
+function display2(){
+
+       // $('.grid').attr("data-masonry", '{ "itemSelector": ".grid-item", "columnWidth": 275 }')              
+   //   $('.grid-item#d0').css('height',50)
+var elem = document.querySelector('.grid22');
+var msnry = new Masonry( elem, {
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 275
+});
+
+// element argument can be a selector string
+//   for an individual element
+var msnry = new Masonry( '.grid', {
+  // options
+});
+     $('.grid22').css('opacity', '1')
+     $('.spinner2').hide()
+     $('.superStar').css('display','block')
+    
+                          }
+                      
+     setTimeout(function(){
+       display2()
+     },1000)
+     
+     setInterval(function(){
+       display2()
+     },1000)
+                      
+     setTimeout(function(){
+       display2()
+     },3000)       
+       
+     setTimeout(function(){
+       display2()
+     },5000)
+       
+     setTimeout(function(){
+       display2()
+     },7000)                      
+                      
+                      
+ 
+                      
+                      
+                      
+                      
+$(document).ready(function(){
+
+        var a=0;
+        var timeout;
+        
+        $(window).scroll(function(){
+          
+    clearTimeout(timeout);  
+    timeout = setTimeout(function() {         
+         //  if($(document).scrollTop()> $(document).height()-($(window).height()*2)){
+           if((($(document).height()- $(document).scrollTop()) <= $(window).height()*2) && (JSON.parse(val).len>a*10)){
+             a++
+
+             $.ajax({
+               type: 'POST',
+               url: 'https://literate-sovereign.glitch.me/index/load8',
+               data: {round: a},
+               dataType: 'html',
+               success: function(d){
+                 d=JSON.parse(d)
+                 $('.grid22').append(d.ans);
+
+    function getMeta2(url, event) {
+     var img = new Image();
+     img.src = url;
+      var num= event.replace(/\D/g,'')
+      var num2= event;      
+
+      
+       if(img.width>img.height){
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width',w)        
+        $('#d'+num2).css('width',w+10)  
+        $('#d'+num2).css('height',img.height/factor+85)  
+        $('#i'+num2).css('width',w)       
+        $('#f'+num2).css('width',w)       
+       
+        
+        
+      }else{
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width', w)  
+        $('#d'+num2).css('width',w+10)       
+        $('#d'+num2).css('height',img.height/factor+85)
+        $('#i'+num2).css('width',w)               
+        $('#f'+num2).css('width',w)     
+        
+ 
+      }      
+      
+      
+     img.onload= function(){
+      if(img.width>img.height){
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width',w)        
+        $('#d'+num2).css('width',w+10)  
+        $('#d'+num2).css('height',img.height/factor+85)  
+        $('#i'+num2).css('width',w)       
+        $('#f'+num2).css('width',w)       
+       
+        
+        
+      }else{
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num2).css('width', w)  
+        $('#d'+num2).css('width',w+10)       
+        $('#d'+num2).css('height',img.height/factor+85)
+        $('#i'+num2).css('width',w)               
+        $('#f'+num2).css('width',w)     
+        
+ 
+      }  
+    }
+      
+      
+    }
+
+              
+       for(var t=0; t<d.ans2.length; t++){
+         getMeta2(d.ans2[t]['image'], d.ans2[t]['id'])
+       }
+                 
+                 
+                 
+    $('.bStar').off().on('click',function(e) {
+        var index=e.target.id;
+        var cl= index.replace("bStar","").replace("iStar","").replace("likes","");
+        var name=($('.bStar').attr('class')).replace('bStar ','');
+        var tN= "#timeNo"+cl;
+        var name= ($('#bStar'+cl).attr('class')).replace('bStar ','');
+          
+        var time= ($(tN).attr('class')).replace('timeNo a','');
+          
+        var num= index.replace('bStar','likes');
+        
+        var mis= "#bStar"+cl; var mis2= "#likes"+cl;
+     // alert(mis)
+     // alert($(mis2).css('color')+ " "+ index);
+if(cl.replace(/[a-z]*[A-Z]*/gi,'') == cl){
+   
+   }
+else{
+       if($(mis).css('color')=='rgb(243, 199, 24)'){
+          $(mis).css('color','rgb(51, 51, 51)');
+          var a= $(mis2).html();
+          if(a=="99+" || a==0){
+            var b=a;
+          }
+          else{
+            var b= eval(a-1);
+          }
+          $(mis2).html(b);         
+       }
+       else if($(mis).css('color')=='rgb(51, 51, 51)'){
+          $(mis).css('color','rgb(243, 199, 24)');
+          var a= $(mis2).html();
+          if(a=="99+" || Number(a)>=99){
+            var b="99+";
+          }
+          else{
+            var b= Number(a)+1;
+          }
+          $(mis2).html(b);
+         
+       }      
+
+          
+        $.ajax({
+                type: 'POST',
+                url: 'https://literate-sovereign.glitch.me/likes2',
+                data: {name: name, time: time},
+                dataType: 'html'
+              }); 
+}
+        });
+          
+          
+                 
+                 
+                                  
+               }
+               
+             })
+           }
+        }, 50)
+        })
+      })                       
+                      
+
+                      
+                    }
+                  }
+                 })           
+            
+            
+          })
+          
+          $('#vsp2').on('click', function(){
+            $('#vsp2').css('display','none')
+            $('#vsp').css('display','none')
+            $('.topSearch').css('display','block')
+            $('.laList').css('display','block')            
+            $('.superStar').css('opacity','0')
+            $('.superStar').html('')
+
+            
+          })          
+          
+        })
+      </script>
+  </body>
+</html>
