@@ -1,0 +1,412 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Picture Share!</title>
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://cdn.hyperdev.com/us-east-1%3A60e6615e-7d9e-47ac-903b-3b4b47372e42%2Flogo.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="ejs.min.js"></script>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/client.js" defer></script>
+    <style>
+      .a3{background: #d9d9d9;}
+    </style>
+    <script>
+      $(document).ready(function(){
+          $('#ics').on('click', function(){
+          $('#rest').css('display', 'block');
+          $('#rest1').css('display', 'block');
+          $('#rest2').css('display', 'block');
+          $('#rest3').css('display', 'block');
+          $('#ics').css('display', 'none');
+          $('#ics2').css('display', 'inline');
+          $('#ics2').css('opacity', '1');
+        
+        })
+
+        $('#ics2').on('click', function(){
+          $('#rest').css('display', 'none');
+          $('#rest1').css('display', 'none');
+          $('#rest2').css('display', 'none');
+          $('#rest3').css('display', 'none');
+          $('#ics').css('display', 'inline');
+          $('#ics2').css('display', 'none');          
+        }) 
+        
+   function onResize(){    
+if ($(window).width() > 900) {
+          $('#ics').css('display', 'none');          
+          $('#ics2').css('display', 'none');          
+          $('#rest').css('display', 'inline');
+          $('#rest1').css('display', 'inline');
+          $('#rest2').css('display', 'inline');
+          $('#rest3').css('display', 'none');
+}
+else {
+  
+          $('#ics').css('display', 'inline');          
+          $('#ics2').css('display', 'none');          
+          $('#rest').css('display', 'none');
+          $('#rest1').css('display', 'none');
+          $('#rest2').css('display', 'none');
+          $('#rest3').css('display', 'none');
+}
+    } 
+        
+        $(window).resize(onResize);
+
+      
+      })
+    </script>
+        <script>
+$('.grid').masonry({
+  // options...
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});      
+    </script>
+    <script>
+      var tot=10; var count=0; var lH=0; var arr=[[]]; var a=0; var mT=0;
+      var darr=[[]]; var total=[];
+      
+    function getMeta(url, event) { 
+     var img = new Image();
+     img.src = url;
+
+      var num= event.target.id.replace(/\D/g,'')
+
+      
+  if(window.innerWidth<= (tot+265)){
+    for(var y=0; y<a; y++){
+      //arr[count][y]= arr[count][y]-lH;
+      darr[count].push(arr[count][y]-lH);
+      if(count==0){
+         total.push(0)
+      }
+    }
+    darr.push([]); //total=[];
+     for(var g=0; g<darr[count].length; g++){
+      // if(!total[g]){total[g]=0;}
+      total[g]+= darr[count][g];
+        //if(g+1==a){arr[count][g]=arr[d][g]+arr[count][g]}
+     }
+    
+    
+    tot=10; a=0; count++; arr.push([]); lH=0;
+  
+  }   
+ 
+  if(count>0){  
+    for(var d=0; d<darr.length-1; d++){
+     for(var g=0; g<darr[d].length; g++){
+     }
+    }      
+  }
+      
+if(count>0){
+//$('#d'+num).css('margin-top', total[a])
+//$('#z').append("count= "+parseInt(count-1)+"; a="+a+" ; "+total[a]+ "<br />")
+      }        
+  
+    
+      
+      if(img.width>img.height){
+       // $('#rest').css('display', 'block');
+        var w=250;
+        
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num).css('width',w)
+       // $('#e'+num).css('overflow',hidden)
+        
+        $('#d'+num).css('width',w+10)  
+        $('#d'+num).css('height',img.height/factor+85)       
+        $('#i'+num).css('width',w)       
+        $('#f'+num).css('width',w)       
+        
+        
+        
+if((img.height/factor+85)>lH){
+ lH=img.height/factor+85;
+}
+arr[count].push(img.height/factor+85);
+tot+= 265; a++;
+//$('#d'+num).html(lH+" "+arr[count][a-1]+ " "+ window.innerWidth)  
+        
+        
+      }else{
+        var w=250;
+        var factor= img.width/w;
+        var factor2= img.width/(w/img.height);
+        
+        $('#e'+num).css('width', w)  
+        $('#d'+num).css('width',w+10)       
+        $('#d'+num).css('height',img.height/factor+85)
+        $('#i'+num).css('width',w)               
+        $('#f'+num).css('width',w)       
+ 
+        
+        
+if((img.height/factor+85)>lH){
+ lH=img.height/factor+85;
+}
+arr[count].push(img.height/factor+85);
+tot+= 265; a++;
+//$('#d'+num).html(lH+" "+arr[count][a-1]+ " "+ window.innerWidth)  
+//$('#z').append("count= "+parseInt(count-1)+"; a="+a+" ; "+total[a]+ "<br />")
+        
+      }
+  //    var marg= $('#d'+num).css('margin-top');
+//$('#d'+num).html(marg)      
+
+    }
+      
+      
+      
+      
+    </script>
+    <script>
+      $(document).ready(function(){
+        //$('#profile').css("display","none")
+        $('#profile').hide()
+        
+        $('#changeP').on('click', function(){
+          $('#profile').show('fadeIn')    
+        })
+        
+        if('<%=error%>' =="1"){
+          alert('We are unable to update your personal information, the username that you entered is unavailable.')
+        }
+        if('<%=error%>' =="2"){
+          alert('We are unable to update your personal information, the email address that you entered is unavailable.')          
+        }
+        if('<%=error%>' =="3"){
+          alert('Your personal information has successfully been updated.')          
+        }
+        if('<%=emailConfirm%>'=="1"){
+          $('#cInp3').css('display', 'block')
+        }
+        if('<%=emailConfirm%>'=="2"){
+          $('#cInp3').css('display', 'block')
+          alert('The confirmation code was not accepted. It was either incorrect or entered after the five minute deadline.')
+        }
+        if('<%=emailConfirm%>'=="3"){
+          alert('Your email address has successfully been updated.')
+        }
+        if('<%=emailConfirm%>'=="4"){
+          $('#cInp4').css('display', 'block')
+        }    
+      })
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="nav"> 
+      <ul class="d">
+        <li class="login" id="lo"><a class="atext" href="https://literate-sovereign.glitch.me/logout"><i class="fa fa-google-plus-square"> </i> Logout</a><i id="ics" class="fa fa-navicon ics"></i><i id="ics2" class="fa fa-navicon ics"></i></li>
+                
+
+      </ul>        
+      <ul class="m">
+        <li class="a1"><img src="https://cdn.hyperdev.com/us-east-1%3A60e6615e-7d9e-47ac-903b-3b4b47372e42%2Flogo.png" alt="" style="height:40px"></li>
+        <li class="a2" id="rest"><a href="https://literate-sovereign.glitch.me/user/profile.html"><%= '@'+user %></a></li>
+        <li class="a3" id="rest1"><a href="https://literate-sovereign.glitch.me/user/upload.html">Upload</a></li>
+        <li class="a4" id="rest2"><a href="https://literate-sovereign.glitch.me/user/users.html">Users</a></li>        
+        <li class="a45" id="rest25"><a href="https://literate-sovereign.glitch.me/user/search.html"><i class="fa fa-search"></i> Search</a></li>        
+        <li class="a5" id="rest3"><button><i class="fa fa-google-plus-square"></i>
+          <a href="https://literate-sovereign.glitch.me/logout">Logout</a>
+          </button></li>        
+      </ul>
+      </div>
+
+    </header>
+
+    <main>
+      <div id="cInp4">
+  <div class="emailConfirmation2">
+    <div class="eC1">
+      <div class="eC2">
+        <p class="eC32">
+          <i class="fa fa-close"></i>
+        </p>
+        <p class="eC3">
+          Email Confirmation <i class="fa fa-envelope"></i>
+        </p>        
+        <p class="eC4">
+          A confirmation code was sent to <b><ema id="eu2"><%=email%></ema></b>. Please enter the code in the field below in the next 5 minutes to deactivate your account.
+        </p>
+        <p class="eC5">
+          <form action="/emailConfirm2" method="POST">
+          <input type="text" name="confirm" id="confirm2" placeholder="XXXXXX" onfocus="this.placeholder=' '" onblur="this.placeholder='XXXXXX'">
+          <button class="pas">
+            <i class="sZ fa fa-search"></i>
+          </button> 
+          </form>          
+        </p>
+      </div>
+    </div>    
+    </div>
+        
+    <script>
+      $('.fa-close').on('click', function(){
+        $('.emailConfirmation2').css('display','none')
+      })
+    </script>        
+      </div>
+      
+      
+      
+      
+      <div id="cInp3">
+  <div class="emailConfirmation">
+    <div class="eC1">
+      <div class="eC2">
+        <p class="eC32">
+          <i class="fa fa-close"></i>
+        </p>
+        <p class="eC3">
+          Email Confirmation <i class="fa fa-envelope"></i>
+        </p>        
+        <p class="eC4">
+          A confirmation code was sent to <b><ema id="eu"><%=email%></ema></b>. Please enter the code in the field below in the next 5 minutes to verify your account.
+        </p>
+        <p class="eC5">
+          <form action="/emailConfirm" method="POST">
+          <input type="text" name="confirm" id="confirm" placeholder="XXXXXX" onfocus="this.placeholder=' '" onblur="this.placeholder='XXXXXX'">
+          <button class="pas">
+            <i class="sZ fa fa-search"></i>
+          </button> 
+          </form>          
+        </p>
+      </div>
+    </div>    
+    </div>
+        
+    <script>
+      $('.fa-close').on('click', function(){
+        $('.emailConfirmation').css('display','none')
+      })
+    </script>        
+      </div>
+      
+      
+      
+      <h1 id="nom">
+        Upload Images
+      </h1>
+      
+      <h2 id="vsp3">
+        <a>Update Personal Information <i class="fa fa-user-plus"></i></a>
+      </h2>
+      
+      <h2 id="vsp4">
+        <a>Go Back <i class="fa fa-arrow-circle-right"></i></a>
+      </h2>      
+      
+      <div id="cInp">
+        
+      <form id="eform" method="POST" action="/user/upload.html">
+       <p>
+         Image to Post: <i class="fa fa-image"></i>
+       </p>
+       <input type="text" name="url" id="url" placeholder="enter url or upload image" onfocus="this.placeholder=''" onblur="this.placeholder='enter url or upload image'">
+       
+       <input type="file" name="upfile" class="file" />
+        
+       <p id="ta">
+         Tags: <span title="Enter values in a comma-separated list"><i class="fa fa-tags"></i></span>
+       </p>
+       <input type="tags" name="tags" id="tags" placeholder="food, dinner, pizza, ..." maxlength="100" onblur="this.placeholder='food, dinner, pizza, ...'" onfocus="this.placeholder=''">
+        
+       <div id="profile">         
+       <p>
+         URL of Profile Image: <i class="fa fa-user"></i>
+       </p>         
+       <input type="text" name="icon" placeholder="(optional)" onblur="this.placeholder='(optional)'" onfocus="this.placeholder=''" id="icon" value="<%= icon %>">
+       <br /><br />        
+        </div> 
+
+       <input type="submit" id="submit">
+        <p id="changeP">Set image as profile picture</p> <input type="checkbox" name="set" class="cB" value="1">
+      </form>
+        
+      </div>
+      
+      
+      <div id="cInp2">
+            
+      <form id="eform2" method="POST" action="/update-user">
+       <p>
+         Username: <i class="fa fa-user"></i>
+       </p>
+       <input type="text" name="userN" id="userN" value="<%= user%>">
+       
+        
+       <p id="ta2">
+         Email Address: <i class="fa fa-google"></i>
+       </p>
+       <input type="email" name="email" id="email2" value="<%= email%>">
+        
+
+       <input type="submit" id="submit2">
+        
+       <p class="deactive">
+         <a href="/user/upload.html?email=4&send=1">Deactivate Account <i class="fa fa-remove"></i></a>
+       </p> 
+      </form>       
+        
+      </div>
+      
+      
+      
+
+    </main>
+    <script>
+      $(document).ready(function(){
+        $('.file').on('change', function(){
+          if($('.file').val() != ""){
+            $('#eform').attr("action","/osearch")
+            $('#eform').attr("enctype", "multipart/form-data")
+          }
+          else if($('.file').val() == ""){
+            $('#eform').attr('action','/user/upload.html')
+            $('#eform').attr('enctype','')           
+          }          
+        })
+        
+        $('#vsp3').on('click', function(){
+          $('#vsp3').css('display', 'none')
+          $('#vsp4').css('display', 'block')
+          $('#cInp').css('display', 'none')
+          $('#cInp2').css('display', 'block')
+        })
+               
+        $('#vsp4').on('click', function(){
+          $('#vsp4').css('display', 'none')
+          $('#vsp3').css('display', 'block')
+          $('#cInp2').css('display', 'none')
+          $('#cInp').css('display', 'block')
+        })
+        
+      })
+    </script>
+  </body>
+</html>
